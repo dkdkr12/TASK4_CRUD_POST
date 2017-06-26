@@ -1,0 +1,32 @@
+    <div class="container">
+        <h1 style="text-align:center"><%= @view_posts.title %></h1>
+        <hr>
+        <p>내용 
+        <br>
+        <%= @view_posts.content %></p>
+        
+        <hr>
+        <a href="/edit/<%= @view_posts.id %>">[수정]</a>
+        <a href="/destroy/<%= @view_posts.id %>">[삭제]</a>
+        <hr>
+    </div>
+
+    <div class="container">
+        <% @view_posts.comments.each do |r| %> 
+            <%= r.content %><hr>
+        <% end %>
+    </div>
+    
+    <div class="container">
+        <form action="/comment_write" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">댓글</label>
+                <input type="hidden" name="post_id" value="<%= @view_posts.id %>" class="form-control" id="exampleInputEmail1">
+                <textarea class="form-control" name="content" rows="2" id="exampleInputPassword1" placeholder="댓글을 입력해주세요.">
+                </textarea>
+            </div>
+            <button type="submit" class="btn btn-default">전송</button>
+        </form>
+    <hr>
+    <a href="/index"><button type="submit">게시판으로</button></a>
+    </div>
